@@ -33,21 +33,21 @@ public class Readgroup extends AppCompatActivity {
         returncontacts=findViewById(R.id.returncontacts);
         showgroup = (RecyclerView) findViewById(R.id.showgroup);
 
-        LinkedHashMap<Item,ArrayList<Item>> groupList = new LinkedHashMap<Item,ArrayList<Item>>();
-        ArrayList<Item> groupsList = fetchGroups();
-        for(Item item:groupsList){
-            String[] ids = item.groupid.split(",");
-            ArrayList<Item> groupMembers =new ArrayList<Item>();
+        LinkedHashMap<Group,ArrayList<Group>> groupList = new LinkedHashMap<Group,ArrayList<Group>>();
+        ArrayList<Group> groupsList = fetchGroups();
+        for(Group group :groupsList){
+            String[] ids = group.groupid.split(",");
+            ArrayList<Group> groupMembers =new ArrayList<Group>();
             for(int i=0;i<ids.length;i++){
                 String groupId = ids[i];
                 groupMembers.addAll(fetchGroupMembers(groupId));
             }
-            item.groupName = item.groupName +" ("+groupMembers.size()+")";
-            groupList.put(item,groupMembers);
+            group.groupName = group.groupName +" ("+groupMembers.size()+")";
+            groupList.put(group,groupMembers);
         }
-        ItemsAdapter itemsAdapter = new ItemsAdapter(groupsList, getApplicationContext());
+        GroupAdapter groupAdapter = new GroupAdapter(groupsList, getApplicationContext());
         showgroup.setLayoutManager(new LinearLayoutManager(this));
-        showgroup.setAdapter(itemsAdapter);
+        showgroup.setAdapter(groupAdapter);
 
         returncontacts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +58,14 @@ public class Readgroup extends AppCompatActivity {
         });
     }
 
-    private ArrayList<Item> fetchGroups(){
-        ArrayList<Item> groupList = new ArrayList<Item>();
+    private ArrayList<Group> fetchGroups(){
+        ArrayList<Group> groupList = new ArrayList<Group>();
         String[] projection = new String[]{ContactsContract.Groups._ID,ContactsContract.Groups.TITLE};
         Cursor cursor = getContentResolver().query(ContactsContract.Groups.CONTENT_URI,
                 projection, null, null, null);
         ArrayList<String> groupTitle = new ArrayList<String>();
         while(cursor.moveToNext()){
-            Item item = new Item();
+            Group item = new Group();
             item.groupid = cursor.getString(cursor.getColumnIndex(ContactsContract.Groups._ID));
             String groupName =      cursor.getString(cursor.getColumnIndex(ContactsContract.Groups.TITLE));
 
@@ -79,7 +79,7 @@ public class Readgroup extends AppCompatActivity {
                 continue;
 
             if(groupTitle.contains(groupName)){
-                for(Item group:groupList){
+                for(Group group:groupList){
                     if(group.groupName.equals(groupName)){
                         group.groupid += ","+item.groupid;
                         break;
@@ -94,17 +94,17 @@ public class Readgroup extends AppCompatActivity {
         }
 
         cursor.close();
-        Collections.sort(groupList,new Comparator<Item>() {
-            public int compare(Item item1, Item item2) {
-                return item2.groupName.compareTo(item1.groupName)<0
+        Collections.sort(groupList,new Comparator<Group>() {
+            public int compare(Group group1, Group group2) {
+                return group2.groupName.compareTo(group1.groupName)<0
                         ?0:-1;
             }
         });
         return groupList;
     }
 
-    private ArrayList<Item> fetchGroupMembers(String groupId){
-        ArrayList<Item> groupMembers = new ArrayList<Item>();
+    private ArrayList<Group> fetchGroupMembers(String groupId){
+        ArrayList<Group> groupMembers = new ArrayList<Group>();
         String where =  ContactsContract.CommonDataKinds.GroupMembership.GROUP_ROW_ID +"="+groupId
                 +" AND "
                 + ContactsContract.CommonDataKinds.GroupMembership.MIMETYPE+"='"
@@ -113,19 +113,20 @@ public class Readgroup extends AppCompatActivity {
         Cursor cursor = getContentResolver().query(ContactsContract.Data.CONTENT_URI, projection, where,null,
                 ContactsContract.Data.DISPLAY_NAME+" COLLATE LOCALIZED ASC");
         while(cursor.moveToNext()){
-            Item item = new Item();
-            item.groupName = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.DISPLAY_NAME));
-            item.groupid = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.GroupMembership.RAW_CONTACT_ID));
+            Group group = new Group();
+            group.groupName = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.DISPLAY_NAME));
+            group.groupid = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.GroupMembership.RAW_CONTACT_ID));
             Cursor phoneFetchCursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                     new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.TYPE},
-                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID+"="+item.groupid,null,null);
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID+"="+ group.groupid,null,null);
             while(phoneFetchCursor.moveToNext()){
-                item.phNo = phoneFetchCursor.getString(phoneFetchCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                item.phDisplayName = phoneFetchCursor.getString(phoneFetchCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                item.phType = phoneFetchCursor.getString(phoneFetchCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+                group.phNo = phoneFetchCursor.getString(phoneFetchCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                group.phDisplayName = phoneFetchCursor.getString(phoneFetchCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                group.phType = phoneFetchCursor.getString(phoneFetchCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+                group.email = phoneFetchCursor.getString(phoneFetchCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
             }
             phoneFetchCursor.close();
-            groupMembers.add(item);
+            groupMembers.add(group);
         }
         cursor.close();
         return groupMembers;

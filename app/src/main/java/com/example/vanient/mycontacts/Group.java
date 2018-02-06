@@ -7,8 +7,8 @@ package com.example.vanient.mycontacts;
 
   /*  public boolean isChecked =false;*/
 
-public class Item {
-    public String groupName,phNo,phDisplayName,phType;
+public class Group {
+    public String groupName,phNo,phDisplayName,phType,email;
     public String groupid;
     public int groupNumber;
 

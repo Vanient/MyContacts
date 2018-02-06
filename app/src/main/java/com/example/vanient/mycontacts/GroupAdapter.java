@@ -15,12 +15,12 @@ import com.example.vanient.contacts.R;
 
 import java.util.List;
 
-public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>{
+public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHolder>{
 
-    private List<Item> itemList;
+    private List<Group> groupList;
     private Context mContext;
-    public ItemsAdapter(List<Item> itemList, Context mContext){
-        this.itemList = itemList;
+    public GroupAdapter(List<Group> groupList, Context mContext){
+        this.groupList = groupList;
         this.mContext = mContext;
     }
 
@@ -33,13 +33,13 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        Item item = itemList.get(position);
-        holder.tvGroupName.setText(item.getGroupName());
+        Group group = groupList.get(position);
+        holder.tvGroupName.setText(group.getGroupName());
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return groupList.size();
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
