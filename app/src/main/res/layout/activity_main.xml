@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:stretchColumns="0,3">
+    <TableRow>
+
+        <TextView />
+        <TextView
+            android:text="Name："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="70px"
+            android:minWidth="300px"/>
+
+        <TextView />
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20px">
+
+        <TextView />
+        <TextView
+            android:text="Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300px"
+            android:textSize="70px"
+           />
+
+        <TextView />
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20px">
+
+        <TextView />
+        <Button
+
+            android:id="@+id/confirm"
+            android:text="Confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <Button
+
+            android:id="@+id/cancel"
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView />
+    </TableRow>
+</TableLayout>
