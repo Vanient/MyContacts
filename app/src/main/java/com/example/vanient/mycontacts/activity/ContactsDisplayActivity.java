@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.example.vanient.contacts.R;
 import com.example.vanient.mycontacts.domain.entity.Contact;
-import com.example.vanient.mycontacts.domain.util.GroupRead;
 import com.example.vanient.mycontacts.domain.adapter.ContactsAdapter;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -43,7 +42,7 @@ public class ContactsDisplayActivity extends AppCompatActivity {
         jump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent j = new Intent(ContactsDisplayActivity.this, GroupRead.class);
+                Intent j = new Intent(ContactsDisplayActivity.this, GrougDisplayActivity.class);
                 startActivity(j);
             }
         });

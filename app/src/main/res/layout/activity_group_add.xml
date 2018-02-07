@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:stretchColumns="0,3">
+
+    <TableRow>
+
+        <TextView />
+        <TextView
+            android:text="@string/group_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+            android:id="@+id/group_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="70px"
+            android:minWidth="300px"/>
+
+        <TextView />
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20px">
+
+        <TextView />
+        <Button
+
+            android:id="@+id/group_confirm"
+            android:text="@string/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <Button
+
+            android:id="@+id/gourp_cancel"
+            android:text="@string/cancel"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView />
+    </TableRow>
+
+</TableLayout>

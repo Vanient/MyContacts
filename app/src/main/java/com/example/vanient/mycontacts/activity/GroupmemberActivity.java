@@ -3,7 +3,6 @@ package com.example.vanient.mycontacts.activity;
 import java.util.ArrayList;
 
 import com.example.vanient.contacts.R;
-import com.example.vanient.mycontacts.domain.util.GroupRead;
 import com.example.vanient.mycontacts.domain.entity.Group;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,14 +27,14 @@ public class GroupmemberActivity extends AppCompatActivity {
         togroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent j = new Intent(GroupmemberActivity.this, GroupRead.class);
+                Intent j = new Intent(GroupmemberActivity.this, GrougDisplayActivity.class);
                 startActivity(j);
             }
         });
 
-        Group keyx = GroupRead.groupsList.get(position);
+        Group keyx = GrougDisplayActivity.groupsList.get(position);
         StringBuilder members = new StringBuilder("Group member:" + "\n");
-        ArrayList<Group> mem = GroupRead.groupList.get(keyx);
+        ArrayList<Group> mem = GrougDisplayActivity.groupList.get(keyx);
         for (Group aMem : mem) {
             members.append(aMem.getPhDisplayName()).append("\n");
         }

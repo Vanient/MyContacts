@@ -1,4 +1,4 @@
-package com.example.vanient.mycontacts.domain.util;
+package com.example.vanient.mycontacts.activity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,8 +6,6 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 
 import com.example.vanient.contacts.R;
-import com.example.vanient.mycontacts.activity.ContactsDisplayActivity;
-import com.example.vanient.mycontacts.activity.GroupmemberActivity;
 import com.example.vanient.mycontacts.activity.listener.RecyclerItemClickListener;
 import com.example.vanient.mycontacts.domain.adapter.GroupAdapter;
 import com.example.vanient.mycontacts.domain.entity.Group;
@@ -25,7 +23,7 @@ import android.widget.Button;
  * Created by Vanient on 2018/2/3.
  */
 
-public class GroupRead extends AppCompatActivity {
+public class GrougDisplayActivity extends AppCompatActivity {
     public static LinkedHashMap<Group, ArrayList<Group>> groupList = new LinkedHashMap<Group, ArrayList<Group>>();
     public static ArrayList<Group> groupsList;
 
@@ -34,6 +32,7 @@ public class GroupRead extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.readgroup_main);
         Button returncontacts = findViewById(R.id.returncontacts);
+        Button mCreateGroup = findViewById(R.id.creategroup);
         RecyclerView showgroup = (RecyclerView) findViewById(R.id.showgroup);
 
         groupsList = fetchGroups();
@@ -53,15 +52,23 @@ public class GroupRead extends AppCompatActivity {
         returncontacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent j = new Intent(GroupRead.this, ContactsDisplayActivity.class);
+                Intent j = new Intent(GrougDisplayActivity.this, ContactsDisplayActivity.class);
                 startActivity(j);
             }
         });
 
-        showgroup.addOnItemTouchListener(new RecyclerItemClickListener(GroupRead.this, showgroup, new RecyclerItemClickListener.OnItemClickListener() {
+        mCreateGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GrougDisplayActivity.this, GroupAddActivity.class);
+                startActivity(i);
+            }
+        });
+
+        showgroup.addOnItemTouchListener(new RecyclerItemClickListener(GrougDisplayActivity.this, showgroup, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent i = new Intent(GroupRead.this, GroupmemberActivity.class);
+                Intent i = new Intent(GrougDisplayActivity.this, GroupmemberActivity.class);
                 i.putExtra("position", position + "");
                 startActivity(i);
             }
