@@ -6,28 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context="com.example.vanient.mycontacts.AllContacts">
+    tools:context="com.example.vanient.mycontacts.activity.ContactsDisplayActivity">
 
     <Button
         android:id="@+id/returncontacts"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginLeft="250dp"
         android:layout_marginTop="10dp"
         android:background="#06F"
-        android:text="Contacts"
+        android:text="@string/contacts"
         android:textColor="#FFF" />
 
     <Button
         android:id="@+id/creategroup"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginLeft="250dp"
         android:layout_marginTop="10dp"
         android:background="#06F"
-        android:text="create"
+        android:text="@string/create"
         android:textColor="#FFF" />
 
     <android.support.v7.widget.RecyclerView
