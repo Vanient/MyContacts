@@ -17,8 +17,10 @@ import java.util.List;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHolder>{
 
+
     private List<Group> groupList;
     private Context mContext;
+
     public GroupAdapter(List<Group> groupList, Context mContext){
         this.groupList = groupList;
         this.mContext = mContext;
@@ -44,8 +46,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHold
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvGroupName;
-
+          TextView tvGroupName;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
