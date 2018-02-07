@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context="com.example.vanient.mycontacts.AllContacts">
+    tools:context="com.example.vanient.mycontacts.activity.ContactsDisplayActivity">
 
     <Button
         android:id="@+id/jump"

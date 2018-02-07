@@ -1,9 +1,9 @@
-package com.example.vanient.mycontacts;
+package com.example.vanient.mycontacts.domain.adapter;
 
-/**
- * Created by Vanient on 2018/2/3.
- */
+import java.util.List;
 
+import com.example.vanient.contacts.R;
+import com.example.vanient.mycontacts.domain.entity.Group;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,17 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.vanient.contacts.R;
-
-import java.util.List;
-
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHolder>{
-
+public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHolder> {
 
     private List<Group> groupList;
     private Context mContext;
 
-    public GroupAdapter(List<Group> groupList, Context mContext){
+    public GroupAdapter(List<Group> groupList, Context mContext) {
         this.groupList = groupList;
         this.mContext = mContext;
     }
@@ -29,8 +24,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHold
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.single_group_view, null);
-        ItemViewHolder itemViewHolder = new ItemViewHolder(view);
-        return itemViewHolder;
+        return new ItemViewHolder(view);
     }
 
     @Override
@@ -44,11 +38,11 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHold
         return groupList.size();
     }
 
-    public static class ItemViewHolder extends RecyclerView.ViewHolder{
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
 
-          TextView tvGroupName;
+        TextView tvGroupName;
 
-        public ItemViewHolder(View itemView) {
+        ItemViewHolder(View itemView) {
             super(itemView);
             tvGroupName = (TextView) itemView.findViewById(R.id.tvGroupName);
 
