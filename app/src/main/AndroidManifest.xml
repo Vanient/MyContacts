@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.vanient.mycontacts.activity.ContactsDisplayActivity" />
-        <activity android:name="com.example.vanient.mycontacts.activity.GroupmemberActivity" />
+        <activity android:name="com.example.vanient.mycontacts.activity.GroupChatActivity" />
         <activity
             android:name="com.example.vanient.mycontacts.activity.GroupAddActivity"
             android:label="@string/title_activity_group_add"

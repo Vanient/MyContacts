@@ -8,4 +8,6 @@
     <string name="group_name">Group Name：</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="edit">edit</string>
+    <string name="done">DONE</string>
 </resources>

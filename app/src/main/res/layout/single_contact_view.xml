@@ -11,31 +11,29 @@
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/check"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:visibility="gone"/>
+            android:button="@null"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
 
         <ImageView
                 android:id="@+id/ivContactImage"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:src="@drawable/baorunqiu"/>
 
         <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center_vertical">
 
             <TextView
                     android:id="@+id/tvContactName"
-                    android:layout_width="384dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
                     android:text="Name"
                     android:textColor="@android:color/primary_text_light"
                     android:textSize="16sp"/>
@@ -45,12 +43,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
                     android:textSize="16sp"
                     android:textColor="@android:color/primary_text_light"
                     android:text="Email"/>
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 

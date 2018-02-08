@@ -1,5 +1,6 @@
 package com.example.vanient.mycontacts.activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
-public class ContactsDisplayActivity extends AppCompatActivity {
+public class ContactsDisplayActivity extends AppCompatActivity implements ContactsAdapter.CheckItemListener{
     private Button add;
     private RecyclerView rvContacts;
     private Button jump;
+    private Button done;
+    private List<Contact> mChoosedContacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,23 @@ public class ContactsDisplayActivity extends AppCompatActivity {
                 startActivity(j);
             }
         });
+
+        done = (Button) findViewById(R.id.edit_done);
+        Intent i = getIntent();
+        if (i.getBooleanExtra("EDIT", false)) {
+            done.setVisibility(View.VISIBLE);
+        }
+
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO 保存联系人到群组
+                Intent i = new Intent(ContactsDisplayActivity.this, GroupChatActivity.class);
+                i.putExtra("CONTACTLIST",(Serializable) mChoosedContacts);
+                startActivity(i);
+            }
+        });
+
         getAllContacts();
     }
 
@@ -82,9 +102,26 @@ public class ContactsDisplayActivity extends AppCompatActivity {
         }
         cursor.close();
 
-        ContactsAdapter contactAdapter = new ContactsAdapter(contactList, getApplicationContext());
+        ContactsAdapter contactAdapter = new ContactsAdapter(contactList, getApplicationContext(), this);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
         rvContacts.setAdapter(contactAdapter);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        done.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void itemChecked(Contact contact, boolean isChecked) {
+        if (isChecked) {
+            mChoosedContacts.add(contact);
+        } else {
+            if (mChoosedContacts.contains(contact)) {
+                mChoosedContacts.remove(contact);
+            }
+        }
     }
 }

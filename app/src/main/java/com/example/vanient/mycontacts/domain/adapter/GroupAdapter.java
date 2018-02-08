@@ -5,10 +5,12 @@ import java.util.List;
 import com.example.vanient.contacts.R;
 import com.example.vanient.mycontacts.domain.entity.Group;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHolder> {
@@ -45,7 +47,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ItemViewHold
         ItemViewHolder(View itemView) {
             super(itemView);
             tvGroupName = (TextView) itemView.findViewById(R.id.tvGroupName);
-
         }
     }
 }
