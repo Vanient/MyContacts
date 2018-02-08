@@ -9,16 +9,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactViewHolder> {
 
     private List<Contact> contactList;
     private Context mContext;
+    private CheckItemListener mCheckItemListener;
 
-    public ContactsAdapter(List<Contact> contactList, Context mContext) {
+    public ContactsAdapter(List<Contact> contactList, Context mContext, CheckItemListener checkItemListener) {
         this.contactList = contactList;
         this.mContext = mContext;
+        this.mCheckItemListener = checkItemListener;
+
     }
 
     @Override
@@ -28,10 +33,19 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     }
 
     @Override
-    public void onBindViewHolder(ContactViewHolder holder, int position) {
+    public void onBindViewHolder(ContactViewHolder holder, final int position) {
         Contact contact = contactList.get(position);
         holder.tvContactName.setText(contact.getName());
         holder.tvPhoneEmail.setText(contact.getEmail());
+        holder.mCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    mCheckItemListener.itemChecked(contactList.get(position), true);
+                }
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -41,14 +55,20 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     static class ContactViewHolder extends RecyclerView.ViewHolder {
 
+        CheckBox mCheck;
         TextView tvContactName;
         TextView tvPhoneEmail;
-
 
         ContactViewHolder(View itemView) {
             super(itemView);
             tvContactName = (TextView) itemView.findViewById(R.id.tvContactName);
             tvPhoneEmail = (TextView) itemView.findViewById(R.id.tvContactEmail);
+            mCheck = (CheckBox) itemView.findViewById(R.id.check);
         }
+    }
+
+    public interface CheckItemListener {
+
+        void itemChecked(Contact contact, boolean isChecked);
     }
 }

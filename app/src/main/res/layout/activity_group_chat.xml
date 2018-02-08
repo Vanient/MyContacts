@@ -7,54 +7,42 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     tools:context="com.example.vanient.mycontacts.activity.ContactsDisplayActivity">
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/jump"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="#06F"
+            android:width="120dp"
             android:layout_marginTop="10dp"
             android:textColor="#FFF"
-            android:text="Group" />
-
-        <Button
-            android:id="@+id/add"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:background="#06F"
-            android:text="add"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:textColor="#FFF" />
+            android:id="@+id/group_edit"
+            android:text="@string/edit"
+            />
 
         <Button
-            android:id="@+id/edit_done"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:id="@+id/togroup"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:background="#06F"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:textColor="#FFF"
-            android:visibility="gone"
-            android:text="@string/done" />
+            android:text="@string/group" />
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvContacts"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:id="@+id/membername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        />
 
-    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

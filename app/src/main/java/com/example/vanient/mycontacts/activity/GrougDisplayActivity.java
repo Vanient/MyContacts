@@ -68,7 +68,7 @@ public class GrougDisplayActivity extends AppCompatActivity {
         showgroup.addOnItemTouchListener(new RecyclerItemClickListener(GrougDisplayActivity.this, showgroup, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent i = new Intent(GrougDisplayActivity.this, GroupmemberActivity.class);
+                Intent i = new Intent(GrougDisplayActivity.this, GroupChatActivity.class);
                 i.putExtra("position", position + "");
                 startActivity(i);
             }

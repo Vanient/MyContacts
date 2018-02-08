@@ -1,6 +1,9 @@
 package com.example.vanient.mycontacts.domain.entity;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable{
+
     private String email;
     private String emailType;
     private String id;
