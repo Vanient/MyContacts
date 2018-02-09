@@ -23,7 +23,7 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
     private RecyclerView rvContacts;
     private Button jump;
     private Button done;
-    private List<Contact> mChoosedContacts;
+    private List<Contact> mChoosedContacts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
