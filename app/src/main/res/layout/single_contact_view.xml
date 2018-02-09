@@ -10,10 +10,11 @@
             android:layout_height="80dp">
 
         <android.support.v7.widget.AppCompatCheckBox
-            android:id="@+id/check"
-            android:button="@null"
-            android:layout_width="50dp"
-            android:layout_height="match_parent" />
+                android:id="@+id/check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:theme="@styles/MyCheckBox"
+                android:visibility="visible"/>
 
         <ImageView
                 android:id="@+id/ivContactImage"
