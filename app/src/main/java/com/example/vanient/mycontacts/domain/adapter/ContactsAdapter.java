@@ -14,7 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactViewHolder> {
-
     private List<Contact> contactList;
     private Context mContext;
     private CheckItemListener mCheckItemListener;
@@ -37,15 +36,17 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         Contact contact = contactList.get(position);
         holder.tvContactName.setText(contact.getName());
         holder.tvPhoneEmail.setText(contact.getEmail());
-        holder.mCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+       holder.mCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
                 if (b) {
                     mCheckItemListener.itemChecked(contactList.get(position), true);
                 }
                 notifyDataSetChanged();
             }
         });
+
     }
 
     @Override
