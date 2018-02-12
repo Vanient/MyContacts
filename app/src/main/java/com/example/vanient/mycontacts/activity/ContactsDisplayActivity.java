@@ -45,7 +45,7 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
         jump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent j = new Intent(ContactsDisplayActivity.this, GrougDisplayActivity.class);
+                Intent j = new Intent(ContactsDisplayActivity.this, GroupDisplayActivity.class);
                 startActivity(j);
             }
         });
@@ -116,12 +116,9 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
 
     @Override
     public void itemChecked(Contact contact, boolean isChecked) {
-        if (isChecked) {
+        if(mChoosedContacts.contains(contact))
+            mChoosedContacts.remove(contact);
+        else
             mChoosedContacts.add(contact);
-        } else {
-            if (mChoosedContacts.contains(contact)) {
-                mChoosedContacts.remove(contact);
-            }
-        }
     }
 }

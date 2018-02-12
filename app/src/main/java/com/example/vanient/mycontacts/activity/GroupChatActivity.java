@@ -29,7 +29,7 @@ public class GroupChatActivity extends AppCompatActivity {
         togroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent j = new Intent(GroupChatActivity.this, GrougDisplayActivity.class);
+                Intent j = new Intent(GroupChatActivity.this, GroupDisplayActivity.class);
                 startActivity(j);
             }
         });
@@ -49,9 +49,9 @@ public class GroupChatActivity extends AppCompatActivity {
             int position = Integer.parseInt(sposition);
 
 
-            Group keyx = GrougDisplayActivity.groupsList.get(position);
+            Group keyx = GroupDisplayActivity.groupsList.get(position);
 
-            ArrayList<Group> mem = GrougDisplayActivity.groupList.get(keyx);
+            ArrayList<Group> mem = GroupDisplayActivity.groupList.get(keyx);
             for (Group aMem : mem) {
                 members.append(aMem.getPhDisplayName()).append("\n");
             }

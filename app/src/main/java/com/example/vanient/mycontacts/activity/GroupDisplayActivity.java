@@ -23,7 +23,7 @@ import android.widget.Button;
  * Created by Vanient on 2018/2/3.
  */
 
-public class GrougDisplayActivity extends AppCompatActivity {
+public class GroupDisplayActivity extends AppCompatActivity {
     public static LinkedHashMap<Group, ArrayList<Group>> groupList = new LinkedHashMap<Group, ArrayList<Group>>();
     public static ArrayList<Group> groupsList;
 
@@ -52,7 +52,7 @@ public class GrougDisplayActivity extends AppCompatActivity {
         returncontacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent j = new Intent(GrougDisplayActivity.this, ContactsDisplayActivity.class);
+                Intent j = new Intent(GroupDisplayActivity.this, ContactsDisplayActivity.class);
                 startActivity(j);
             }
         });
@@ -60,15 +60,15 @@ public class GrougDisplayActivity extends AppCompatActivity {
         mCreateGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(GrougDisplayActivity.this, GroupAddActivity.class);
+                Intent i = new Intent(GroupDisplayActivity.this, GroupAddActivity.class);
                 startActivity(i);
             }
         });
 
-        showgroup.addOnItemTouchListener(new RecyclerItemClickListener(GrougDisplayActivity.this, showgroup, new RecyclerItemClickListener.OnItemClickListener() {
+        showgroup.addOnItemTouchListener(new RecyclerItemClickListener(GroupDisplayActivity.this, showgroup, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent i = new Intent(GrougDisplayActivity.this, GroupChatActivity.class);
+                Intent i = new Intent(GroupDisplayActivity.this, GroupChatActivity.class);
                 i.putExtra("position", position + "");
                 startActivity(i);
             }

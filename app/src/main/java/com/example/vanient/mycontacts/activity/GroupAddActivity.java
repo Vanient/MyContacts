@@ -48,7 +48,7 @@ public class GroupAddActivity extends AppCompatActivity {
 
                 }
                 Log.i(TAG, "** group add end **");
-                Intent i = new Intent(GroupAddActivity.this, GrougDisplayActivity.class);
+                Intent i = new Intent(GroupAddActivity.this, GroupDisplayActivity.class);
                 startActivity(i);
             }
         });
