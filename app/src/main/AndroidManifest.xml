@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.vanient.mycontacts.activity.ContactAddActivity" />
-        <activity android:name="com.example.vanient.mycontacts.activity.GrougDisplayActivity">
+        <activity android:name="com.example.vanient.mycontacts.activity.GroupDisplayActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
