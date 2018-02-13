@@ -39,14 +39,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
        holder.mCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
                 if (b) {
                     mCheckItemListener.itemChecked(contactList.get(position), true);
                 }
                 notifyDataSetChanged();
             }
         });
-
     }
 
     @Override
