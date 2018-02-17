@@ -7,6 +7,8 @@ import java.util.List;
 import com.example.vanient.contacts.R;
 import com.example.vanient.mycontacts.domain.entity.Contact;
 import com.example.vanient.mycontacts.domain.adapter.ContactsAdapter;
+
+import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,6 +26,7 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
     private Button jump;
     private Button done;
     private List<Contact> mChoosedContacts = new ArrayList<>();
+    private String groupid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,10 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
             }
         });
 
+
+        String groupid = getIntent().getStringExtra("groupID");
+
+
         jump = (Button) findViewById(R.id.jump);
         jump.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,10 +63,13 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
             done.setVisibility(View.VISIBLE);
         }
 
+
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO 保存联系人到群组
+
+
                 Intent i = new Intent(ContactsDisplayActivity.this, GroupChatActivity.class);
                 i.putExtra("CONTACTLIST",(Serializable) mChoosedContacts);
                 startActivity(i);
@@ -116,6 +126,7 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
 
     @Override
     public void itemChecked(Contact contact, boolean isChecked) {
+
         if(mChoosedContacts.contains(contact))
             mChoosedContacts.remove(contact);
         else

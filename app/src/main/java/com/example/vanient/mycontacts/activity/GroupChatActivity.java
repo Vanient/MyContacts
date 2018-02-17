@@ -33,23 +33,26 @@ public class GroupChatActivity extends AppCompatActivity {
                 startActivity(j);
             }
         });
+        String sposition;
+        final Group keyx;
+
+            sposition = getIntent().getStringExtra("position");
+            int position = Integer.parseInt(sposition);
+            keyx = GroupDisplayActivity.groupsList.get(position);
+
 
         mEditGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(GroupChatActivity.this, ContactsDisplayActivity.class);
                 i.putExtra("EDIT", true);
+                i.putExtra("groupID", keyx.getGroupid());
                 startActivity(i);
             }
         });
 
         if (getIntent().getStringExtra("position") != null) {
 
-            String sposition = getIntent().getStringExtra("position");
-            int position = Integer.parseInt(sposition);
-
-
-            Group keyx = GroupDisplayActivity.groupsList.get(position);
 
             ArrayList<Group> mem = GroupDisplayActivity.groupList.get(keyx);
             for (Group aMem : mem) {
