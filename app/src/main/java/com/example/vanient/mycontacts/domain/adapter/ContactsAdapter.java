@@ -36,7 +36,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         Contact contact = contactList.get(position);
         holder.tvContactName.setText(contact.getName());
         holder.tvPhoneEmail.setText(contact.getEmail());
-       holder.mCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.mCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {

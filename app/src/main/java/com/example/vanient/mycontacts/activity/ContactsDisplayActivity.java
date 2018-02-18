@@ -45,7 +45,7 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
         });
 
 
-        String groupid = getIntent().getStringExtra("groupID");
+   /*     String groupid = getIntent().getStringExtra("groupID");*/
 
 
         jump = (Button) findViewById(R.id.jump);
