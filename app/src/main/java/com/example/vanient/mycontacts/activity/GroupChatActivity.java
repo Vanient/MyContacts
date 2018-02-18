@@ -45,7 +45,6 @@ public class GroupChatActivity extends AppCompatActivity {
             keyx = GroupDisplayActivity.groupsList.get(position);
 */
 
-
 /*        mEditGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
