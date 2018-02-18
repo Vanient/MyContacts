@@ -120,6 +120,7 @@ public class GroupDisplayActivity extends AppCompatActivity {
         }
 
         cursor.close();
+
         Collections.sort(groupList, new Comparator<Group>() {
             @Override
             public int compare(Group group1, Group group2) {

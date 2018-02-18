@@ -31,7 +31,7 @@
         <Button
 
             android:id="@+id/group_confirm"
-            android:text="@string/confirm"
+            android:text="create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -47,4 +47,19 @@
         <TextView />
     </TableRow>
 
+
+    <Button
+
+        android:id="@+id/add_group_contact"
+        android:text="add_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <Button
+
+        android:id="@+id/total_confirm"
+        android:text="confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 </TableLayout>

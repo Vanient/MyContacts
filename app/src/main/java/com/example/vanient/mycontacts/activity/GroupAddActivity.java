@@ -26,6 +26,9 @@ public class GroupAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group_add);
         final ContactsManager cm = new ContactsManager(this.getContentResolver());
         Button mConfirm = findViewById(R.id.group_confirm);
+        Button mCancel = findViewById(R.id.gourp_cancel);
+        Button maddcontact = findViewById(R.id.add_group_contact);
+        Button mtotalconfirm = findViewById(R.id.total_confirm);
 
         mGroupName = super.findViewById(R.id.group_name);
         mConfirm.setOnClickListener(new View.OnClickListener() {
@@ -48,10 +51,38 @@ public class GroupAddActivity extends AppCompatActivity {
 
                 }
                 Log.i(TAG, "** group add end **");
+               /* Intent i = new Intent(GroupAddActivity.this, GroupDisplayActivity.class);
+                startActivity(i);*/
+            }
+        });
+
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent i = new Intent(GroupAddActivity.this, GroupDisplayActivity.class);
                 startActivity(i);
             }
         });
+
+
+        maddcontact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GroupAddActivity.this, ContactsDisplayActivity.class);
+                i.putExtra("EDIT", true);
+/*              i.putExtra("groupID", keyx.getGroupid());*/
+                startActivity(i);
+            }
+        });
+
+        mtotalconfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GroupAddActivity.this, GroupDisplayActivity.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 

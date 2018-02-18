@@ -24,7 +24,9 @@ public class GroupChatActivity extends AppCompatActivity {
         TextView membername = findViewById(R.id.membername);
 
         Button togroup = (Button) findViewById(R.id.togroup);
+/*
         Button mEditGroup = (Button) findViewById(R.id.group_edit);
+*/
 
         togroup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,15 +45,15 @@ public class GroupChatActivity extends AppCompatActivity {
 */
 
 
-        mEditGroup.setOnClickListener(new View.OnClickListener() {
+/*        mEditGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(GroupChatActivity.this, ContactsDisplayActivity.class);
                 i.putExtra("EDIT", true);
-/*              i.putExtra("groupID", keyx.getGroupid());*/
+*//*              i.putExtra("groupID", keyx.getGroupid());*//*
                 startActivity(i);
             }
-        });
+        });*/
 
         if (getIntent().getStringExtra("position") != null) {
             String sposition = getIntent().getStringExtra("position");
@@ -64,7 +66,8 @@ public class GroupChatActivity extends AppCompatActivity {
             }
 
             membername.setText(members.toString());
-        } else {
+        }
+/*        else {
             Intent i = getIntent();
             List<Contact> contacts = (List<Contact>) i.getSerializableExtra("CONTACTLIST");
             if (contacts != null) {
@@ -74,6 +77,6 @@ public class GroupChatActivity extends AppCompatActivity {
                 }
                 membername.setText(members.toString());
             }
-        }
+        }*/
     }
 }
