@@ -35,6 +35,7 @@ public class GroupChatActivity extends AppCompatActivity {
                 startActivity(j);
             }
         });
+
 /*
         String sposition;
         final Group keyx;
