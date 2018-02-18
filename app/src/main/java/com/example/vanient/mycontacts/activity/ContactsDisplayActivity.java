@@ -69,7 +69,6 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
             public void onClick(View view) {
                 //TODO 保存联系人到群组
 
-
                 Intent i = new Intent(ContactsDisplayActivity.this, GroupChatActivity.class);
                 i.putExtra("CONTACTLIST",(Serializable) mChoosedContacts);
                 startActivity(i);

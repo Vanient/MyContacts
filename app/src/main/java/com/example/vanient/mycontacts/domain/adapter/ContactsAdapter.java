@@ -35,7 +35,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public void onBindViewHolder(ContactViewHolder holder, final int position) {
         Contact contact = contactList.get(position);
         holder.tvContactName.setText(contact.getName());
-        holder.tvPhoneEmail.setText(contact.getEmail());
+        holder.tvContactEmail.setText(contact.getEmail());
         holder.mCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -56,12 +56,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
         CheckBox mCheck;
         TextView tvContactName;
-        TextView tvPhoneEmail;
+        TextView tvContactEmail;
 
         ContactViewHolder(View itemView) {
             super(itemView);
             tvContactName = (TextView) itemView.findViewById(R.id.tvContactName);
-            tvPhoneEmail = (TextView) itemView.findViewById(R.id.tvContactEmail);
+            tvContactEmail = (TextView) itemView.findViewById(R.id.tvContactEmail);
             mCheck = (CheckBox) itemView.findViewById(R.id.check);
         }
     }
