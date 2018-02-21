@@ -7,6 +7,7 @@ import java.util.List;
 import com.example.vanient.contacts.R;
 import com.example.vanient.mycontacts.domain.entity.Contact;
 import com.example.vanient.mycontacts.domain.adapter.ContactsAdapter;
+import com.example.vanient.mycontacts.domain.util.ContactsManager;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
@@ -17,6 +18,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -27,11 +29,14 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
     private Button done;
     private List<Contact> mChoosedContacts = new ArrayList<>();
     private String groupid;
+    private ContactsManager contactsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_contacts);
+
+        contactsManager = new ContactsManager(this.getContentResolver());
 
         rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
         add = (Button) findViewById(R.id.add);
@@ -45,7 +50,7 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
         });
 
 
-   /*     String groupid = getIntent().getStringExtra("groupID");*/
+        final String groupId = getIntent().getStringExtra("groupId");
 
 
         jump = (Button) findViewById(R.id.jump);
@@ -58,7 +63,7 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
         });
 
         done = (Button) findViewById(R.id.edit_done);
-        Intent i = getIntent();
+        final Intent i = getIntent();
         if (i.getBooleanExtra("EDIT", false)) {
             done.setVisibility(View.VISIBLE);
         }
@@ -68,8 +73,19 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
             @Override
             public void onClick(View view) {
                 //TODO 保存联系人到群组
+                ArrayList<ContentProviderOperation> operationList = new ArrayList<ContentProviderOperation>();
+                for (Contact contact : mChoosedContacts) {
+                    operationList.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                            .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, Integer.parseInt(contactsManager.getContactID(contact.getName())))
+                            .withValue(ContactsContract.CommonDataKinds.GroupMembership.MIMETYPE,
+                                    ContactsContract.CommonDataKinds.GroupMembership.CONTENT_ITEM_TYPE)
+                            .withValue(ContactsContract.CommonDataKinds.GroupMembership.GROUP_ROW_ID,
+                                    groupId).build());
+                }
 
-                Intent i = new Intent(ContactsDisplayActivity.this, GroupAddActivity.class);
+                contactsManager.groupAddContacts(operationList);
+
+                Intent i = new Intent(ContactsDisplayActivity.this, GroupChatActivity.class);
                 i.putExtra("CONTACTLIST",(Serializable) mChoosedContacts);
                 startActivity(i);
             }
@@ -89,7 +105,6 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
 
                 String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                 String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                name = "Name:" + name;
 
                 contact = new Contact();
                 contact.setName(name);
@@ -125,10 +140,12 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
 
     @Override
     public void itemChecked(Contact contact, boolean isChecked) {
-
-        if(mChoosedContacts.contains(contact))
-            mChoosedContacts.remove(contact);
-        else
+        if (isChecked) {
             mChoosedContacts.add(contact);
+        } else {
+            if (mChoosedContacts.contains(contact)) {
+                mChoosedContacts.remove(contact);
+            }
+        }
     }
 }

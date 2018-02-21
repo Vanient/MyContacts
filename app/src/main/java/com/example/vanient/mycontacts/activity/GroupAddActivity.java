@@ -51,8 +51,6 @@ public class GroupAddActivity extends AppCompatActivity {
 
                 }
                 Log.i(TAG, "** group add end **");
-               /* Intent i = new Intent(GroupAddActivity.this, GroupDisplayActivity.class);
-                startActivity(i);*/
             }
         });
 
@@ -70,7 +68,6 @@ public class GroupAddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(GroupAddActivity.this, ContactsDisplayActivity.class);
                 i.putExtra("EDIT", true);
-/*              i.putExtra("groupID", keyx.getGroupid());*/
                 startActivity(i);
             }
         });

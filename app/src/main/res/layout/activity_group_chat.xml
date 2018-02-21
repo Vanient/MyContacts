@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-  <!--      <Button
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:width="120dp"
@@ -23,7 +23,6 @@
             android:id="@+id/group_edit"
             android:text="@string/edit"
             />
--->
         <Button
             android:id="@+id/togroup"
             android:layout_width="120dp"

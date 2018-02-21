@@ -40,7 +40,7 @@ public class ContactsManager {
      * @return 0 if contact not exist in contacts list. Otherwise return
      * the id of the contact.
      */
-    private String getContactID(String name) {
+    public String getContactID(String name) {
         String id = "0";
         Cursor cursor = contentResolver.query(
                 ContactsContract.Contacts.CONTENT_URI,
@@ -96,5 +96,15 @@ public class ContactsManager {
             }
         }
         Log.w(TAG, "**add end**");
+    }
+
+    public void groupAddContacts(ArrayList<ContentProviderOperation> operationList ){
+        try {
+            contentResolver.applyBatch(ContactsContract.AUTHORITY, operationList);
+            Log.d(TAG, "group add contact success.");
+        } catch (Exception e) {
+            Log.d(TAG, "add contact failed.");
+            Log.e(TAG, e.getMessage());
+        }
     }
 }

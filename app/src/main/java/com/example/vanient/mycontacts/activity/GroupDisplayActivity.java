@@ -69,7 +69,8 @@ public class GroupDisplayActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 Intent i = new Intent(GroupDisplayActivity.this, GroupChatActivity.class);
-                i.putExtra("position", position + "");
+                i.putExtra("position", position);
+                i.putExtra("groupId", groupsList.get(position).getGroupid());
                 startActivity(i);
             }
 

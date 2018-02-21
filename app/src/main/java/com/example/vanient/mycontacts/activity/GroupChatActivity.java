@@ -15,68 +15,51 @@ import android.widget.TextView;
 
 public class GroupChatActivity extends AppCompatActivity {
 
+    private String groupId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_chat);
 
         StringBuilder members = new StringBuilder("Group member:" + "\n");
-        TextView membername = findViewById(R.id.membername);
+        TextView memberName = findViewById(R.id.membername);
 
-        Button togroup = (Button) findViewById(R.id.togroup);
-/*
+        groupId = getIntent().getStringExtra("groupId");
+        int position = getIntent().getIntExtra("position", -1);
+
+        if (position != -1) {
+            Group group = GroupDisplayActivity.groupsList.get(position);
+
+            ArrayList<Group> mem = GroupDisplayActivity.groupList.get(group);
+            if (mem != null) {
+                for (Group aMem : mem) {
+                    members.append(aMem.getPhDisplayName()).append("\n");
+                }
+            }
+
+            memberName.setText(members.toString());
+        }
+
+        Button toGroup = (Button) findViewById(R.id.togroup);
         Button mEditGroup = (Button) findViewById(R.id.group_edit);
-*/
 
-        togroup.setOnClickListener(new View.OnClickListener() {
+        mEditGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GroupChatActivity.this, ContactsDisplayActivity.class);
+                i.putExtra("EDIT", true);
+                i.putExtra("groupId", groupId);
+                startActivity(i);
+            }
+        });
+
+        toGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent j = new Intent(GroupChatActivity.this, GroupDisplayActivity.class);
                 startActivity(j);
             }
         });
-
-/*
-        String sposition;
-        final Group keyx;
-
-            sposition = getIntent().getStringExtra("position");
-            int position = Integer.parseInt(sposition);
-            keyx = GroupDisplayActivity.groupsList.get(position);
-*/
-
-/*        mEditGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(GroupChatActivity.this, ContactsDisplayActivity.class);
-                i.putExtra("EDIT", true);
-*//*              i.putExtra("groupID", keyx.getGroupid());*//*
-                startActivity(i);
-            }
-        });*/
-
-        if (getIntent().getStringExtra("position") != null) {
-            String sposition = getIntent().getStringExtra("position");
-            int position = Integer.parseInt(sposition);
-            Group keyx = GroupDisplayActivity.groupsList.get(position);
-
-            ArrayList<Group> mem = GroupDisplayActivity.groupList.get(keyx);
-            for (Group aMem : mem) {
-                members.append(aMem.getPhDisplayName()).append("\n");
-            }
-
-            membername.setText(members.toString());
-        }
-/*        else {
-            Intent i = getIntent();
-            List<Contact> contacts = (List<Contact>) i.getSerializableExtra("CONTACTLIST");
-            if (contacts != null) {
-                members = new StringBuilder("Group member:" + "\n");
-                for (Contact contact : contacts) {
-                    members.append(contact.getName()).append("\n");
-                }
-                membername.setText(members.toString());
-            }
-        }*/
     }
 }
