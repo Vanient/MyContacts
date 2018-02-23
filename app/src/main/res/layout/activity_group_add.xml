@@ -47,7 +47,7 @@
         <TextView />
     </TableRow>
 
-
+<!--
     <Button
 
         android:id="@+id/add_group_contact"
@@ -61,5 +61,5 @@
         android:text="confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        />-->
 </TableLayout>

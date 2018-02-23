@@ -28,7 +28,7 @@ public class GroupChatActivity extends AppCompatActivity {
         groupId = getIntent().getStringExtra("groupId");
         int position = getIntent().getIntExtra("position", -1);
 
-        if (position != -1) {
+/*        if (position != -1) {
             Group group = GroupDisplayActivity.groupsList.get(position);
 
             ArrayList<Group> mem = GroupDisplayActivity.groupList.get(group);
@@ -39,6 +39,29 @@ public class GroupChatActivity extends AppCompatActivity {
             }
 
             memberName.setText(members.toString());
+        }*/
+
+        if (position != -1)  {
+
+            Group keyx = GroupDisplayActivity.groupsList.get(position);
+
+            ArrayList<Group> mem = GroupDisplayActivity.groupList.get(keyx);
+            for (Group aMem : mem) {
+                members.append(aMem.getPhDisplayName()).append("\n");
+            }
+
+            memberName.setText(members.toString());
+        } else {
+            Intent i = getIntent();
+            List<Contact> contacts = (List<Contact>) i.getSerializableExtra("CONTACTLIST");
+            if (contacts != null) {
+                members = new StringBuilder("Group member:" + "\n");
+                for (Contact contact : contacts) {
+                    members.append(contact.getName()).append("\n");
+                }
+                memberName.setText(members.toString());
+
+            }
         }
 
         Button toGroup = (Button) findViewById(R.id.togroup);

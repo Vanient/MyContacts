@@ -10,6 +10,7 @@ import com.example.vanient.mycontacts.domain.adapter.ContactsAdapter;
 import com.example.vanient.mycontacts.domain.util.ContactsManager;
 
 import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -72,15 +73,16 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO 保存联系人到群组
+
                 ArrayList<ContentProviderOperation> operationList = new ArrayList<ContentProviderOperation>();
-                for (Contact contact : mChoosedContacts) {
+               for (Contact contact : mChoosedContacts) {
                     operationList.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
                             .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, Integer.parseInt(contactsManager.getContactID(contact.getName())))
                             .withValue(ContactsContract.CommonDataKinds.GroupMembership.MIMETYPE,
                                     ContactsContract.CommonDataKinds.GroupMembership.CONTENT_ITEM_TYPE)
-                            .withValue(ContactsContract.CommonDataKinds.GroupMembership.GROUP_ROW_ID,
-                                    groupId).build());
+                            .withValue(ContactsContract.CommonDataKinds.GroupMembership.GROUP_ROW_ID, groupId)
+                            .build())
+                            ;
                 }
 
                 contactsManager.groupAddContacts(operationList);
@@ -140,12 +142,11 @@ public class ContactsDisplayActivity extends AppCompatActivity implements Contac
 
     @Override
     public void itemChecked(Contact contact, boolean isChecked) {
-        if (isChecked) {
-            mChoosedContacts.add(contact);
+        if (mChoosedContacts.contains(contact)) {
+            mChoosedContacts.remove(contact);
         } else {
-            if (mChoosedContacts.contains(contact)) {
-                mChoosedContacts.remove(contact);
-            }
+            mChoosedContacts.add(contact);
+
         }
     }
 }
